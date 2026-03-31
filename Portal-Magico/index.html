@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio – Portal Mágico </title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-animated" aria-hidden="true"></div>
+    <div class="page-wrap">
+    <div class="hero">
+        <h1>O Portal Mágico</h1>
+        <p>
+            Você está diante de um portal mágico que leva a quatro reinos diferentes. <br>
+            Para atravessá-lo, você deve digitar uma palavra secreta.
+        </p>
+    </div>
+
+        <div class="instructions" aria-live="polite">
+            <strong>Como funciona</strong>
+            <ul>
+                <li>Clique em <strong>Entrar no Portal</strong> para abrir o formulário.</li>
+                <li>Digite a <em>palavra mágica</em> correspondente a um dos reinos: <span class="hint">fogo</span>, <span class="hint">agua</span>, <span class="hint">vento</span> ou <span class="hint">terra</span>.</li>
+                <li>A palavra é normalizada automaticamente (acentos e maiúsculas são ignorados).</li>
+                <li>Se a palavra estiver correta, a página altera a imagem, o fundo e exibe uma mensagem do reino.</li>
+                <li>Para fechar o formulário, use o botão <em>Cancelar</em>, o botão ×, pressione <kbd>Esc</kbd> ou clique fora do modal.</li>
+            </ul>
+        </div>
+
+    <img src="Portal.png" alt="Um portal de energia azul!" class="efeito" tabindex="0">
+    
+    <button id="ativar">Entrar no Portal</button>
+    
+    <p id="mensagem"> </p>
+    <script src="script.js"></script>
+    </div>
+    </body>
+</html>

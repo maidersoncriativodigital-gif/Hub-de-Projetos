@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+  <meta charset="UTF-8">
+  <title>Desafio - Caverna das Três Escolhas</title>
+  <link rel="stylesheet" href="style.css">
+  </head>
+<body>
+  <div class="container">
+    <header>
+      <h2>🗺️ Desafio: A Caverna das Três Escolhas</h2>
+      <p id="intro">Você entrou em uma caverna mágica e precisa escolher uma das três passagens para continuar sua jornada.</p>
+    </header>
+
+    <main>
+      <div class="stage">
+        <img src="Caverna.png" alt="Entrada de uma caverna!" id="Image">
+        <div id="narrativa" aria-live="polite">Clique em "Iniciar Jornada" para começar a aventura.</div>
+      </div>
+
+      <div class="controls">
+        <button id="start" class="primary">Iniciar Jornada</button>
+        <div class="choices" id="choices" aria-hidden="true">
+          <button class="choice" data-choice="1" disabled>Passagem 1</button>
+          <button class="choice" data-choice="2" disabled>Passagem 2</button>
+          <button class="choice" data-choice="3" disabled>Passagem 3</button>
+        </div>
+        <button id="reset" class="secondary" aria-hidden="true" style="display:none">Reiniciar</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

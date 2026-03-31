@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistema SGA SENAI</title>
+    <style>
+        :root {
+            --senai-blue: #005DA5;
+            --senai-orange: #FF8C00;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--senai-blue) 0%, #003d6e 100%);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+        }
+
+        .logo-area {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--senai-blue);
+            margin-bottom: 5px;
+        }
+
+        .logo-area span { color: var(--senai-orange); }
+
+        .subtitle { color: #666; margin-bottom: 25px; font-size: 14px; margin-top: 0; }
+
+        /* CORREÇÃO: Ocultar erro por padrão */
+        #erro {
+            display: none;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            border: 1px solid #f5c6cb;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--senai-orange);
+            outline: none;
+        }
+
+        .btn-login {
+            width: 100%;
+            background: var(--senai-orange);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-login:hover {
+            background: #e67e00;
+            transform: translateY(-2px);
+        }
+
+        .footer-links {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .link-footer {
+            color: var(--senai-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .restrito {
+            display: block;
+            margin-top: 15px;
+            font-size: 10px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-contato {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 12px;
+            color: #777;
+        }
+
+        .footer-contato a {
+            color: var(--senai-blue);
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+    <div class="logo-area">SENAI<span>.</span></div>
+    <p class="subtitle">Gestão de Faltas e Saídas</p>
+
+    <div id="erro">RA ou Senha incorretos!</div>
+
+    <form id="loginForm">
+        <div class="input-group">
+            <label>RA (Matrícula)</label>
+            <input type="text" id="ra" placeholder="Digite seu RA" maxlength="10" required>
+        </div>
+
+        <div class="input-group">
+            <label>Senha</label>
+            <input type="password" id="senha" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="btn-login">ACESSAR SISTEMA</button>
+    </form>
+
+    <div class="footer-links">
+        <a href="#" class="link-footer">Esqueceu a senha?</a> 
+        <span style="color: #ddd; margin: 0 5px;">|</span>
+        <a href="#" class="link-footer">Criar conta</a>
+    </div>
+
+    <div class="footer-contato">
+        Dúvidas? Contate a Secretaria: <br>
+        <a href="mailto:secretaria.senai@exemplo.com.br">secretaria.senai@exemplo.com.br</a>
+    </div>
+
+    <strong class="restrito">Acesso Restrito a Alunos e Colaboradores</strong>
+</div>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const ra = document.getElementById('ra').value;
+        const senha = document.getElementById('senha').value;
+        const erroDiv = document.getElementById('erro');
+
+        // Lógica de Redirecionamento
+        if (ra === "admin" && senha === "1234") {
+            window.location.href = "dashboard.html"; // Vai para a secretaria
+        } else if (ra.length >= 5 && senha.length >= 4) {
+            window.location.href = "dashboard_aluno.html"; // Vai para o portal do aluno
+        } else {
+            erroDiv.style.display = 'block';
+        }
+    });
+</script>
+
+</body>
+</html>

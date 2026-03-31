@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receita Premium | Bolo de Chocolate</title>
+    <!-- External Resources -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-4 md:p-10">
+
+    <!-- Loading State -->
+    <div id="loading-overlay">
+        <div class="text-center">
+            <div class="loader-spinner"></div>
+            <p class="text-amber-900 font-semibold mt-4">Preparando sua receita...</p>
+        </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto">
+        <!-- Action Header -->
+        <header class="flex justify-between items-center mb-6 no-print">
+            <a href="#" class="text-amber-800 flex items-center gap-2 font-semibold hover:underline">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar ao Hub
+            </a>
+            <button onclick="window.print()" class="p-2 rounded-full bg-white shadow hover:bg-gray-50 text-gray-700 transition-colors">
+                <i data-lucide="printer" class="w-5 h-5"></i>
+            </button>
+        </header>
+
+        <article class="recipe-card rounded-3xl overflow-hidden bg-white">
+            <!-- Hero Section -->
+            <div class="relative h-64 md:h-96 w-full bg-gray-200">
+                <img id="hero-image" src="Bolo%20de%20Chocolate%20Finalizado.jpg" alt="Bolo de Chocolate Finalizado" class="w-full h-full object-cover opacity-0 transition-opacity duration-1000">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-8">
+                    <div>
+                        <span class="bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2 inline-block">Favorito da Galera</span>
+                        <h1 class="text-white text-4xl md:text-5xl font-bold">Bolo de Chocolate Fofinho</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 md:p-12">
+                <!-- Info Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 pb-8 border-b border-gray-100 text-center">
+                    <div class="info-item">
+                        <i data-lucide="clock" class="w-5 h-5 mx-auto mb-1 text-amber-700"></i>
+                        <span class="label">Preparo</span>
+                        <span class="value">50 min</span>
+                    </div>
+                    <div class="info-item">
+                        <i data-lucide="utensils" class="w-5 h-5 mx-auto mb-1 text-amber-700"></i>
+                        <span class="label">Dificuldade</span>
+                        <span class="value">Fácil</span>
+                    </div>
+                    <div class="info-item">
+                        <i data-lucide="users" class="w-5 h-5 mx-auto mb-1 text-amber-700"></i>
+                        <span class="label">Rende</span>
+                        <span class="value">12 fatias</span>
+                    </div>
+                    <div class="info-item">
+                        <i data-lucide="flame" class="w-5 h-5 mx-auto mb-1 text-amber-700"></i>
+                        <span class="label">Calorias</span>
+                        <span class="value">280 kcal</span>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-12">
+                    <!-- Ingredients Sidebar -->
+                    <aside class="md:col-span-1">
+                        <h2 class="text-2xl mb-6 flex items-center gap-2 text-amber-900">
+                            <i data-lucide="shopping-basket"></i> Ingredientes
+                        </h2>
+                        <ul class="space-y-3">
+                            <li class="ingredient-item"><input type="checkbox"> 3 ovos</li>
+                            <li class="ingredient-item"><input type="checkbox"> 100ml de óleo</li>
+                            <li class="ingredient-item"><input type="checkbox"> 150ml de leite</li>
+                            <li class="ingredient-item"><input type="checkbox"> 450g de farinha de trigo</li>
+                            <li class="ingredient-item"><input type="checkbox"> 50g de manteiga</li>
+                            <li class="ingredient-item"><input type="checkbox"> 150g de açúcar</li>
+                            <li class="ingredient-item"><input type="checkbox"> 50g de chocolate 50%</li>
+                            <li class="ingredient-item"><input type="checkbox"> 1 colher de fermento</li>
+                        </ul>
+
+                        <div class="mt-10 p-4 bg-amber-50 rounded-xl border border-amber-100">
+                            <h3 class="font-bold text-amber-900 mb-2">Dica de Ouro:</h3>
+                            <p class="text-sm text-amber-800 italic">Peneire os secos para garantir que o bolo fique ainda mais aerado!</p>
+                        </div>
+                    </aside>
+
+                    <!-- Steps Content -->
+                    <main class="md:col-span-2">
+                        <h2 class="text-2xl mb-6 flex items-center gap-2 text-amber-900">
+                            <i data-lucide="chef-hat"></i> Modo de Preparo
+                        </h2>
+                        <div class="space-y-6">
+                            <div class="step">
+                                <span class="step-num">1</span>
+                                <p>Pré-aqueça o forno a <strong>180°C</strong>. Unte uma forma com furo central usando manteiga e chocolate em pó.</p>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">2</span>
+                                <p>Em uma tigela, misture bem os ovos, o óleo e o leite. Adicione o açúcar e a manteiga derretida.</p>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">3</span>
+                                <p>Incorpore o chocolate e a farinha aos poucos. Por último, adicione o fermento e misture delicadamente.</p>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">4</span>
+                                <p>Leve ao forno por 40 minutos. Faça o teste do palito antes de retirar.</p>
+                            </div>
+                        </div>
+
+                        <!-- Gallery -->
+                        <div class="mt-12 grid grid-cols-2 gap-4">
+                            <div class="gallery-wrapper">
+                                <img id="gallery-1" src="Textura%20da%20Massa.jpg" alt="Textura da massa" class="gallery-img opacity-0">
+                            </div>
+                            <div class="gallery-wrapper">
+                                <img id="gallery-2" src="Bolo%20no%20Forno.jpg" alt="Bolo saindo do forno" class="gallery-img opacity-0">
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </article>
+
+        <footer class="mt-12 text-center text-gray-500 pb-10 no-print">
+            <p>© 2026 Meu Hub de Receitas</p>
+            <div class="social-links">
+                <a href="https://maidersoncriativodigital-gif.github.io/Hub-de-Projetos/" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/maiderson-junio-257018354?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

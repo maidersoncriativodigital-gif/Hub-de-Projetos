@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquivo de Aprendizagem | O Meu Percurso Dev</title>
+    <meta name="description" content="Portfólio de estudos e projetos pessoais: mini-jogos, páginas temáticas e exemplos de front-end com HTML, CSS e JavaScript.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="profile-tag reveal">Estudante de Programação</div>
+        <h1 class="reveal">O Meu Lab de Código</h1>
+        <p class="reveal">Este é o repositório central dos meus estudos. Aqui documento o meu progresso em desenvolvimento web, desde os primeiros passos até projetos estruturados.</p>
+    </header>
+
+    <!-- SEÇÃO: SOBRE MIM -->
+    <section class="about-section reveal" aria-labelledby="sobre-titulo">
+        <div class="about-inner">
+            <div class="about-thumb" aria-hidden="true">
+                <!-- avatar SVG simples para evitar dependências de ficheiros -->
+                <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Avatar">
+                    <defs>
+                        <linearGradient id="a" x1="0" x2="1">
+                            <stop offset="0" stop-color="#6366f1"/>
+                            <stop offset="1" stop-color="#a855f7"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="120" height="120" rx="20" fill="url(#a)" />
+                    <g fill="white" opacity="0.95" transform="translate(20,20)">
+                        <circle cx="40" cy="32" r="20" />
+                        <rect x="8" y="66" width="64" height="20" rx="8" />
+                    </g>
+                </svg>
+            </div>
+            <div class="about-content">
+                <h2 id="sobre-titulo">Sobre mim</h2>
+                <p>Sou estudante de programação e crio pequenos projetos para praticar front-end: páginas temáticas, mini-jogos e experiências interativas. Gosto de design limpo, acessibilidade e soluções que funcionem bem em dispositivos móveis.</p>
+                <p>Atualmente estou a trabalhar em automatizar processos acadêmicos com a aplicação <strong>Justify</strong> e em pequenos jogos como o <em>Tic‑Tac‑Toe</em>. Aqui no repositório documentei o meu percurso e os recursos que uso para aprender.</p>
+                <div class="about-actions">
+                    <a href="#" class="tech-badge">Ver CV</a>
+                    <a href="#social-links" class="tech-badge">Contactar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="projects-section">
+        <div class="projects-grid">
+
+            <!-- PROJETO: CARNAVAL DE MÁSCARAS -->
+            <div class="project-card reveal" data-href="Carnaval-de-Mascaras/index.html">
+                <div class="project-thumb">
+                    <img src="Carnaval-de-Mascaras/Máscaras.png" alt="Carnaval de Máscaras">
+                </div>
+                <div class="project-content">
+                    <h3>Carnaval de Máscaras</h3>
+                    <p>Pequena página interativa com verificação de entrada temática e ilustrações festivas. Modal amigável e validação.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">HTML</span>
+                        <span class="tech-badge">CSS</span>
+                        <span class="tech-badge">JS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="Carnaval-de-Mascaras/INSTRUCTIONS.md" class="tech-badge" target="_blank">Instruções</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJETO: CAVERNA DAS TRÊS ESCOLHAS -->
+            <div class="project-card reveal" data-href="Caverna-das-Tres-Escolhas/index.html">
+                <div class="project-thumb">
+                    <img src="Caverna-das-Tres-Escolhas/Caverna.png" alt="Caverna das Três Escolhas">
+                </div>
+                <div class="project-content">
+                    <h3>Caverna das Três Escolhas</h3>
+                    <p>Mini-aventura interativa com escolhas, imagens e narrativa. Suporta teclado (1-3) e reinício.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">HTML</span>
+                        <span class="tech-badge">CSS</span>
+                        <span class="tech-badge">JS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJETO: HARRY POTTER -->
+            <div class="project-card reveal" data-href="Harry-Potter/index.html">
+                <div class="project-thumb">
+                    <img src="Harry-Potter/Chapéu Seletor.jpg" alt="Harry Potter">
+                </div>
+                <div class="project-content">
+                    <h3>Harry Potter — Fan Art</h3>
+                    <p>Galeria e landing com ilustrações e ícones do universo de Hogwarts. Inclui imagens, grelha responsiva e navegação simples.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">HTML5</span>
+                        <span class="tech-badge">CSS3</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJETO: JUSTIFY -->
+            <div class="project-card reveal" data-href="Justify/index.html">
+                <div class="project-thumb">
+                    <img src="Justify/justify.png" alt="Justify">
+                </div>
+                <div class="project-content">
+                    <h3>Justify</h3>
+                    <p>O Justify moderniza o processo acadêmico no SENAI, substituindo os processos físicos lentos por um fluxo de trabalho (workflow) digitalizado.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">HTML</span>
+                        <span class="tech-badge">CSS</span>
+                        <span class="tech-badge">JS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="Justify/INSTRUCTIONS.md" class="tech-badge" target="_blank">Instruções</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJETO 1: MUNDO MÍSTICO -->
+            <div class="project-card reveal" data-href="Mundo-Mini/index.html">
+                <div class="project-thumb">
+                    <img src="Mundo-Mini/Coleção.png" alt="Mundo Místico">
+                </div>
+                <div class="project-content">
+                    <h3>Mundo Místico Minis</h3>
+                    <p>Estudo de landing page para um estúdio artístico. Focado em design responsivo, animações de scroll e estruturação de portfólio de fan art.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">HTML5</span>
+                        <span class="tech-badge">CSS3</span>
+                        <span class="tech-badge">JS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJETO: PORTAL MÁGICO -->
+            <div class="project-card reveal" data-href="Portal-Magico/index.html">
+                <div class="project-thumb">
+                    <img src="Portal-Magico/Portal.png" alt="Portal Mágico">
+                </div>
+                <div class="project-content">
+                    <h3>Portal Mágico</h3>
+                    <p>Portal temático que aceita palavras mágicas para transportar o visitante a reinos elementais (fogo, água, vento, terra).</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">HTML</span>
+                        <span class="tech-badge">CSS</span>
+                        <span class="tech-badge">JS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJETO: RECEITAS -->
+            <div class="project-card reveal" data-href="Receitas/index.html">
+                <div class="project-thumb">
+                    <img src="Receitas/Bolo de Chocolate Finalizado.jpg" alt="Receitas - Bolo de Chocolate">
+                </div>
+                <div class="project-content">
+                    <h3>Receitas — Bolo</h3>
+                    <p>Pequeno site de receitas com passo-a-passo, imagens do processo e layout pensado para leitura clara em dispositivos móveis.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">HTML5</span>
+                        <span class="tech-badge">CSS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJETO: TIC-TAC-TOE -->
+            <div class="project-card reveal" data-href="Jogo-da-Velha/index.html">
+                <div class="project-thumb">
+                    <img src="Jogo-da-Velha/thumbnail.svg" alt="Tic Tac Toe">
+                </div>
+                <div class="project-content">
+                    <h3>Tic-Tac-Toe</h3>
+                    <p>Jogo clássico implementado com HTML, CSS e JavaScript. Inclui lógica de jogador contra jogador e visualização interativa.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">HTML5</span>
+                        <span class="tech-badge">CSS3</span>
+                        <span class="tech-badge">JS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="Jogo-da-Velha/INSTRUCTIONS.md" class="tech-badge" target="_blank">Instruções</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div id="social-links" class="social-links">
+            <a href="mailto:maidersoncriativodigital@gmail.com" title="Enviar email" class="social-email"><i class="fas fa-envelope"></i></a>
+            <a href="https://maidersoncriativodigital-gif.github.io/Hub-de-Projetos/" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/maiderson-junio-257018354?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); max-width: 500px; margin: 0 auto;">
+            "A programação não é sobre o que sabes, mas sobre o que consegues descobrir." &copy; 2026 | Lab de Estudos
+        </p>
+    </footer>
+    <script src="script.js" defer></script>
+</body>
+</html>

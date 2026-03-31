@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrada no Carnaval de Máscaras Veneziano</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Carnaval de Máscaras Veneziano</h1>
+
+    <p>
+        Seja bem-vindo ao nosso Carnaval de Máscaras, clique abaixo para saber se você pode entrar!!!
+    </p>
+
+    <img src="Máscaras.png" alt="Máscaras Coloridas" id="máscara">
+
+    <button id="entrada">Entrar</button>
+
+    <!-- Modal de entrada (inicialmente escondido) -->
+    <div id="modal" class="modal" hidden>
+        <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <button class="modal-close" aria-label="Fechar modal">×</button>
+            <h2 id="modal-title">Verificar entrada</h2>
+
+            <form id="entrada-form">
+                <label for="nome">Nome</label>
+                <input id="nome" name="nome" type="text" autocomplete="name" required />
+
+                <label for="idade">Idade</label>
+                <input id="idade" name="idade" type="number" min="0" inputmode="numeric" required />
+
+                <label for="mascara">Está usando máscara?</label>
+                <select id="mascara" name="mascara">
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                </select>
+
+                <div class="modal-actions">
+                    <button type="submit" class="btn-primary">Verificar</button>
+                    <button type="button" id="btn-cancel" class="btn-secondary">Cancelar</button>
+                </div>
+            </form>
+
+            <div id="resultado" class="resultado" hidden></div>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

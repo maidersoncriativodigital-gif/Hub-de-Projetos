@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="360" viewBox="0 0 600 360" role="img" aria-label="Miniatura Tic Tac Toe">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#a855f7"/>
+    </linearGradient>
+    <style>
+      .bg{fill:url(#g)}
+      .grid{fill:none;stroke:rgba(255,255,255,0.9);stroke-width:10;stroke-linecap:round}
+      .x{stroke:white;stroke-width:14;stroke-linecap:round}
+      .o{fill:none;stroke:white;stroke-width:12}
+      .shadow{filter:drop-shadow(0 6px 10px rgba(0,0,0,0.25))}
+    </style>
+  </defs>
+  <rect class="bg" width="100%" height="100%" rx="24"/>
+  <!-- grid -->
+  <g transform="translate(80,40) scale(1.1)" class="shadow">
+    <rect x="0" y="0" width="440" height="280" rx="18" fill="rgba(255,255,255,0.06)"/>
+    <g class="grid">
+      <line x1="146" y1="10" x2="146" y2="270" />
+      <line x1="292" y1="10" x2="292" y2="270" />
+      <line x1="10" y1="90" x2="430" y2="90" />
+      <line x1="10" y1="180" x2="430" y2="180" />
+    </g>
+    <!-- sample X and O -->
+    <g transform="translate(30,20)">
+      <line class="x" x1="30" y1="30" x2="110" y2="110" />
+      <line class="x" x1="110" y1="30" x2="30" y2="110" />
+    </g>
+    <g transform="translate(220,80)">
+      <circle class="o" cx="60" cy="60" r="44" />
+    </g>
+    <g transform="translate(340,20)">
+      <line class="x" x1="30" y1="30" x2="110" y2="110" />
+      <line class="x" x1="110" y1="30" x2="30" y2="110" />
+    </g>
+  </g>
+  <text x="32" y="338" font-family="Segoe UI, system-ui, sans-serif" font-size="18" fill="rgba(255,255,255,0.9)">Tic‑Tac‑Toe — Jogo da Velha</text>
+</svg>

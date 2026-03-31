@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Portal do Aluno - SENAI</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        :root { --senai-blue: #005DA5; --senai-orange: #FF8C00; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; }
+        .container { background: white; max-width: 700px; margin: auto; border-radius: 10px; border-top: 8px solid var(--senai-blue); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .tabs { display: flex; background: #eee; }
+        .tab-btn { flex: 1; padding: 15px; border: none; cursor: pointer; font-weight: bold; color: var(--senai-blue); }
+        .tab-btn.active { background: white; color: var(--senai-orange); border-bottom: 3px solid var(--senai-orange); }
+        .content { padding: 30px; }
+        .form-section { display: none; }
+        .form-section.active { display: block; }
+        input, textarea, select { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        .btn-submit { width: 100%; background: var(--senai-orange); color: white; padding: 15px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .alerta-menor { background: #fff3cd; color: #856404; padding: 10px; border-radius: 5px; margin: 10px 0; display: none; font-size: 13px; border: 1px solid #ffeeba; }
+        .card-status { background: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 5px solid #ccc; }
+    </style>
+</head>
+<body onload="carregarPedidosAluno()">
+<div class="container">
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'solicitar')">Nova Solicitação</button>
+        <button class="tab-btn" onclick="openTab(event, 'meus-pedidos')">Acompanhar Status</button>
+    </div>
+
+    <div class="content">
+        <div id="solicitar" class="form-section active">
+            <h2>Solicitação Acadêmica</h2>
+            <div id="alerta-menor" class="alerta-menor">
+                ⚠️ <b>Atenção:</b> Por ser menor de idade, você deve anexar a autorização dos pais e comparecer à coordenação para colher o visto.
+            </div>
+            <form onsubmit="enviarSolicitacao(event)">
+                <input type="text" id="nome" placeholder="Nome Completo" required>
+                <input type="text" id="ra" placeholder="Seu RA" maxlength="10" required>
+                <input type="number" id="idade" placeholder="Sua Idade" oninput="checarMenor(this.value)" required>
+                <select id="tipo">
+                    <option value="Saída Antecipada">Saída Antecipada</option>
+                    <option value="Justificativa">Justificativa de Falta</option>
+                </select>
+                <input type="text" id="instrutor" placeholder="Instrutor da Aula" required>
+                <label style="font-size: 12px; color: #666;">Anexo (Atestado ou Autorização de Menor):</label>
+                <input type="file" id="anexo">
+                <button type="submit" class="btn-submit">ENVIAR SOLICITAÇÃO</button>
+            </form>
+        </div>
+
+        <div id="meus-pedidos" class="form-section">
+            <h2>Status dos meus Pedidos</h2>
+            <div id="lista-aluno"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openTab(e, n) {
+        document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+        document.getElementById(n).classList.add('active');
+        e.currentTarget.classList.add('active');
+        if(n === 'meus-pedidos') carregarPedidosAluno();
+    }
+
+    function checarMenor(valor) {
+        document.getElementById('alerta-menor').style.display = (valor > 0 && valor < 18) ? 'block' : 'none';
+    }
+
+    function enviarSolicitacao(e) {
+        e.preventDefault();
+        const protocolo = "SN-" + Math.floor(100000 + Math.random() * 900000);
+        const idade = document.getElementById('idade').value;
+        
+        const dados = {
+            id: protocolo,
+            nome: document.getElementById('nome').value,
+            ra: document.getElementById('ra').value,
+            idade: idade,
+            tipo: document.getElementById('tipo').value,
+            instrutor: document.getElementById('instrutor').value,
+            status: 'Pendente',
+            menor: (idade < 18)
+        };
+
+        let lista = JSON.parse(localStorage.getItem('solicitacoes') || '[]');
+        lista.push(dados);
+        localStorage.setItem('solicitacoes', JSON.stringify(lista));
+        alert("Enviado! Protocolo: " + protocolo);
+        location.reload();
+    }
+
+    function carregarPedidosAluno() {
+        const lista = JSON.parse(localStorage.getItem('solicitacoes') || '[]');
+        const container = document.getElementById('lista-aluno');
+        container.innerHTML = lista.length ? "" : "Nenhum pedido realizado.";
+        lista.slice().reverse().forEach(item => {
+            let cor = item.status === 'Aprovado' ? '#28a745' : (item.status === 'Rejeitado' ? '#dc3545' : '#856404');
+            container.innerHTML += `
+                <div class="card-status" style="border-left-color: ${cor}">
+                    <small>#${item.id} - ${item.tipo}</small><br>
+                    <strong>Status: <span style="color:${cor}">${item.status}</span></strong>
+                    ${item.menor ? '<br><small style="color:red">Pendente: Visto dos Pais/Coordenação</small>' : ''}
+                </div>`;
+        });
+    }
+</script>
+</body>
+</html>

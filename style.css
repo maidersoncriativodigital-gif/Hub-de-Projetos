@@ -1,0 +1,298 @@
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #38bdf8;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --font-main: 'Inter', sans-serif;
+            --font-title: 'Space Grotesk', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            line-height: 1.6;
+        }
+
+        /* Cabeçalho */
+        header {
+            min-height: 48vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 18px;
+            text-align: center;
+            background: radial-gradient(circle at top right, #1e293b, #0f172a);
+        }
+
+        .profile-tag {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            font-weight: 500;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        header h1 {
+            font-family: var(--font-title);
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            margin-bottom: 15px;
+        }
+
+        header p {
+            max-width: 600px;
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Grelha de Projetos */
+        .projects-section {
+            max-width: 1100px;
+            margin: 0 auto 40px;
+            padding: 0 18px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 18px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            /* garantir cards com altura consistente */
+            min-height: 360px;
+        }
+
+        /* tornar o card interativo e acessível */
+        .project-card { cursor: pointer; }
+
+        .project-card:focus { outline: 3px solid rgba(56,189,248,0.12); outline-offset: 4px; }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-color);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .project-thumb {
+            height: 200px;
+            background: #334155;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* garantir que a thumb nunca empurre conteúdo se imagem faltar */
+        .project-thumb.empty { min-height: 140px; }
+
+        .project-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: 0.5s;
+            display: block;
+        }
+
+        .project-card:hover .project-thumb img {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 18px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-content h3 {
+            font-family: var(--font-title);
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .project-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+            flex-grow: 1;
+            /* truncar texto para manter layout uniforme */
+            display: -webkit-box;
+            line-clamp: 3;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: auto; /* empurra badges para o rodapé do card */
+        }
+
+        /* links de projeto (ex: Instruções) - manter compactos no rodapé */
+        .project-links {
+            margin-top: 10px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .project-links .tech-badge { padding: 4px 10px; font-size: 0.75rem; }
+
+        .tech-badge {
+            font-size: 0.75rem;
+            background: rgba(15, 23, 42, 0.5);
+            padding: 4px 12px;
+            border-radius: 6px;
+            color: var(--accent-color);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        /* Acessibilidade: foco claro em navegação por teclado */
+        .project-card:focus,
+        .project-card:focus-visible {
+            outline: 3px solid rgba(56, 189, 248, 0.12);
+            outline-offset: 4px;
+            transform: translateY(-6px);
+        }
+
+        /* Rodapé */
+        footer {
+            padding: 40px 18px;
+            text-align: center;
+            background-color: #0b1120;
+        }
+
+        .social-links {
+            margin-bottom: 12px;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.4rem;
+            margin: 0 10px;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover { color: var(--accent-color); }
+
+        /* Padronização dos ícones sociais */
+        .footer-social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .social-links {
+            margin: 12px 0 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            transition: background 0.18s, color 0.18s, transform 0.12s;
+            border: 1px solid rgba(255,255,255,0.04);
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+            background: linear-gradient(90deg, rgba(99,102,241,0.12), rgba(168,85,247,0.12));
+            transform: translateY(-2px);
+        }
+
+        .social-links a:focus {
+            outline: 3px solid rgba(56,189,248,0.14);
+            outline-offset: 4px;
+        }
+
+        @media (max-width: 480px) {
+            .social-links a { width: 36px; height: 36px; font-size: 1rem; }
+        }
+
+        /* Animações ao rolar */
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: 0.8s all ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            header { min-height: 42vh; }
+            .projects-section { margin-top: 12px; }
+            .projects-grid { grid-template-columns: 1fr; gap: 14px; }
+            .project-card { min-height: auto; }
+            .project-thumb { height: 160px; }
+        }
+
+        /* Seção Sobre Mim */
+        .about-section {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 16px;
+        }
+
+        .about-inner {
+            display: flex;
+            gap: 16px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 14px;
+            align-items: center;
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .about-thumb { flex: 0 0 120px; display:flex; align-items:center; justify-content:center; }
+
+        .about-content h2 { font-family: var(--font-title); margin-bottom: 8px; }
+
+        .about-content p { color: var(--text-secondary); margin-bottom: 10px; }
+
+        .about-actions { margin-top: 8px; display:flex; gap:8px; }
+
+        .about-actions .tech-badge { background: rgba(255,255,255,0.04); color: var(--text-primary); border-color: rgba(255,255,255,0.06); }
+
+        @media (max-width: 720px) {
+            .about-inner { flex-direction: column; text-align: center; }
+            .about-thumb { margin-bottom: 6px; }
+        }

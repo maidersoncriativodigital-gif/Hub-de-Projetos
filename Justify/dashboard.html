@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGA - Gestão Secretaria SENAI</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        :root {
+            --senai-blue: #005DA5;
+            --senai-orange: #FF8C00;
+            --bg-gray: #f0f2f5;
+            --success: #28a745;
+            --danger: #dc3545;
+        }
+
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg-gray); margin: 0; padding: 20px; }
+        .container { background: white; width: 100%; max-width: 1150px; margin: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); overflow: hidden; border-top: 8px solid var(--senai-blue); }
+
+        .header { padding: 20px; background: white; border-bottom: 2px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+        .header h1 { color: var(--senai-blue); margin: 0; font-size: 22px; }
+
+        .content { padding: 25px; }
+
+        /* PAINEL DE FILTROS */
+        .filter-section { 
+            background: #fff; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-bottom: 25px; 
+            display: grid; 
+            grid-template-columns: 2fr 1fr 1fr 1fr; 
+            gap: 15px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .filter-group { display: flex; flex-direction: column; }
+        .filter-group label { font-size: 11px; font-weight: bold; color: #666; margin-bottom: 5px; text-transform: uppercase; }
+        .filter-group input, .filter-group select { padding: 10px; border: 1px solid #ccc; border-radius: 5px; outline: none; transition: 0.3s; }
+        .filter-group input:focus { border-color: var(--senai-blue); }
+
+        /* TABELA */
+        .table-container { overflow-x: auto; background: white; border-radius: 8px; }
+        table { width: 100%; border-collapse: collapse; min-width: 800px; }
+        th { background: #f4f7f9; color: var(--senai-blue); padding: 15px; text-align: left; font-size: 12px; text-transform: uppercase; border-bottom: 2px solid #eee; }
+        td { padding: 15px; border-bottom: 1px solid #eee; font-size: 13px; }
+        tr:hover { background-color: #f9fbff; }
+
+        /* STATUS E BADGES */
+        .badge { padding: 5px 12px; border-radius: 20px; font-weight: bold; font-size: 11px; }
+        .status-Pendente { background: #fff3cd; color: #856404; }
+        .status-Aprovado { background: #d4edda; color: #155724; }
+        .status-Rejeitado { background: #f8d7da; color: #721c24; }
+        .menor-tag { color: var(--danger); font-weight: bold; font-size: 10px; display: block; margin-top: 3px; }
+
+        /* BOTÕES */
+        .btn-group { display: flex; gap: 4px; }
+        .btn { border: none; padding: 8px 10px; border-radius: 5px; cursor: pointer; color: white; font-weight: bold; transition: 0.2s; }
+        .btn-ok { background: var(--success); }
+        .btn-no { background: var(--danger); }
+        .btn-pdf { background: #6c757d; }
+        .btn:hover { transform: translateY(-2px); opacity: 0.9; }
+    </style>
+</head>
+<body onload="inicializar()">
+
+<div class="container">
+    <div class="header">
+        <h1>SGA - Gestão Secretaria Acadêmica</h1>
+        <button onclick="resetar()" style="background: #eee; border: 1px solid #ccc; padding: 5px 10px; cursor: pointer; border-radius: 4px; font-size: 11px;">Resetar Banco</button>
+    </div>
+
+    <div class="content">
+        <div class="filter-section">
+            <div class="filter-group">
+                <label>Pesquisar Aluno ou Protocolo</label>
+                <input type="text" id="busca" placeholder="Digite nome ou SN-..." onkeyup="filtrar()">
+            </div>
+            <div class="filter-group">
+                <label>Filtrar Curso</label>
+                <select id="f-curso" onchange="filtrar()">
+                    <option value="">Todos os Cursos</option>
+                    <option value="Mecânica">Mecânica</option>
+                    <option value="Informática">Informática</option>
+                    <option value="Eletrotécnica">Eletrotécnica</option>
+                    <option value="Redes">Redes</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Filtrar Instrutor</label>
+                <select id="f-instrutor" onchange="filtrar()">
+                    <option value="">Todos</option>
+                    <option value="Marcos">Marcos</option>
+                    <option value="Cláudia">Cláudia</option>
+                    <option value="Roberto">Roberto</option>
+                    <option value="Sérgio">Sérgio</option>
+                    <option value="Patrícia">Patrícia</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Status</label>
+                <select id="f-status" onchange="filtrar()">
+                    <option value="">Qualquer</option>
+                    <option value="Pendente">Pendentes</option>
+                    <option value="Aprovado">Aprovados</option>
+                    <option value="Rejeitado">Rejeitados</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Protocolo</th>
+                        <th>Aluno (RA)</th>
+                        <th>Curso</th>
+                        <th>Instrutor</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="lista-tabela"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 1. DADOS SIMULADOS (O sistema salva e recupera daqui)
+    function inicializar() {
+        if (!localStorage.getItem('solicitacoes')) {
+            const simulados = [
+                {id: "SN-102938", nome: "Ana Costa", ra: "100001", idade: 16, curso: "Mecânica", tipo: "Justificativa", instrutor: "Marcos", status: "Pendente"},
+                {id: "SN-445566", nome: "Bruno Silva", ra: "100002", idade: 19, curso: "Informática", tipo: "Saída", instrutor: "Cláudia", status: "Pendente"},
+                {id: "SN-998877", nome: "Carlos Lima", ra: "100003", idade: 17, curso: "Redes", tipo: "Justificativa", instrutor: "Roberto", status: "Pendente"},
+                {id: "SN-332211", nome: "Daniela Santos", ra: "100004", idade: 20, curso: "Logística", tipo: "Saída", instrutor: "Sérgio", status: "Pendente"},
+                {id: "SN-556677", nome: "Eduardo Rocha", ra: "100005", idade: 16, curso: "Eletrotécnica", tipo: "Justificativa", instrutor: "Patrícia", status: "Pendente"},
+                {id: "SN-889900", nome: "Fernanda Lima", ra: "100006", idade: 21, curso: "Informática", tipo: "Saída", instrutor: "Cláudia", status: "Pendente"},
+                {id: "SN-112233", nome: "Gabriel Souza", ra: "100007", idade: 17, curso: "Mecânica", tipo: "Justificativa", instrutor: "Marcos", status: "Pendente"},
+                {id: "SN-443322", nome: "Helena Alves", ra: "100008", idade: 22, curso: "Redes", tipo: "Saída", instrutor: "Roberto", status: "Pendente"},
+                {id: "SN-554433", nome: "Igor Mendes", ra: "100009", idade: 16, curso: "Eletrotécnica", tipo: "Justificativa", instrutor: "Patrícia", status: "Pendente"}
+            ];
+            localStorage.setItem('solicitacoes', JSON.stringify(simulados));
+        }
+        filtrar();
+    }
+
+    // 2. FUNÇÃO DE FILTRO (O segredo da inteligência)
+    function filtrar() {
+        const txt = document.getElementById('busca').value.toLowerCase();
+        const curso = document.getElementById('f-curso').value;
+        const instrutor = document.getElementById('f-instrutor').value;
+        const status = document.getElementById('f-status').value;
+
+        const lista = JSON.parse(localStorage.getItem('solicitacoes') || '[]');
+        
+        const filtrados = lista.filter(i => {
+            const matchBusca = i.nome.toLowerCase().includes(txt) || i.id.toLowerCase().includes(txt);
+            const matchCurso = curso === "" || i.curso === curso;
+            const matchInstrutor = instrutor === "" || i.instrutor === instrutor;
+            const matchStatus = status === "" || i.status === status;
+            return matchBusca && matchCurso && matchInstrutor && matchStatus;
+        });
+
+        renderizar(filtrados);
+    }
+
+    // 3. RENDERIZAÇÃO NA TELA
+    function renderizar(dados) {
+        const tbody = document.getElementById('lista-tabela');
+        tbody.innerHTML = "";
+
+        dados.slice().reverse().forEach(i => {
+            tbody.innerHTML += `
+                <tr>
+                    <td><b>#${i.id}</b></td>
+                    <td>${i.nome} (RA: ${i.ra}) ${i.idade < 18 ? '<span class="menor-tag">⚠️ MENOR DE IDADE</span>' : ''}</td>
+                    <td>${i.curso}</td>
+                    <td>${i.instrutor}</td>
+                    <td><span class="badge status-${i.status}">${i.status}</span></td>
+                    <td>
+                        <div class="btn-group">
+                            <button class="btn btn-ok" onclick="mudarStatus('${i.id}', 'Aprovado')" title="Aprovar">✓</button>
+                            <button class="btn btn-no" onclick="mudarStatus('${i.id}', 'Rejeitado')" title="Rejeitar">X</button>
+                            <button class="btn btn-pdf" onclick="abrirPDF('${i.id}')" title="Gerar Termo">📄</button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        });
+    }
+
+    // 4. PERSISTÊNCIA E PDF
+    function mudarStatus(id, novo) {
+        let lista = JSON.parse(localStorage.getItem('solicitacoes') || '[]');
+        const idx = lista.findIndex(x => x.id === id);
+        lista[idx].status = novo;
+        localStorage.setItem('solicitacoes', JSON.stringify(lista));
+        filtrar();
+    }
+
+    function abrirPDF(id) {
+        const lista = JSON.parse(localStorage.getItem('solicitacoes') || '[]');
+        const d = lista.find(x => x.id === id);
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        
+        doc.setFillColor(0, 93, 165); doc.rect(0, 0, 210, 25, 'F');
+        doc.setTextColor(255); doc.text("SENAI - TERMO ACADÊMICO", 20, 15);
+        doc.setTextColor(0); doc.text(`Protocolo: ${d.id}`, 20, 40);
+        doc.text(`Aluno: ${d.nome} | RA: ${d.ra}`, 20, 50);
+        doc.text(`Curso: ${d.curso}`, 20, 60);
+        doc.text(`Status: ${d.status.toUpperCase()}`, 20, 70);
+        
+        doc.text("__________________________", 20, 110); doc.text("Assinatura Aluno/Pai", 20, 115);
+        doc.text("__________________________", 120, 110); doc.text("Visto Coordenação", 120, 115);
+        window.open(doc.output('bloburl'), '_blank');
+    }
+
+    function resetar() {
+        localStorage.removeItem('solicitacoes');
+        inicializar();
+    }
+</script>
+</body>
+</html>
