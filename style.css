@@ -55,6 +55,8 @@
             max-width: 600px;
             color: var(--text-secondary);
             font-size: 1rem;
+            text-align: justify;
+            text-justify: inter-word;
         }
 
         /* Grelha de Projetos */
@@ -284,6 +286,17 @@
 
         .about-thumb { flex: 0 0 120px; display:flex; align-items:center; justify-content:center; }
 
+        .about-avatar {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.45);
+            border: 4px solid rgba(255,255,255,0.95);
+            background: #fff;
+            display: block;
+        }
+
         .about-content h2 { font-family: var(--font-title); margin-bottom: 8px; }
 
         .about-content p { color: var(--text-secondary); margin-bottom: 10px; }
@@ -296,3 +309,17 @@
             .about-inner { flex-direction: column; text-align: center; }
             .about-thumb { margin-bottom: 6px; }
         }
+
+        /* Barra centralizada de download do currículo */
+        .download-cta-wrapper { display:flex; justify-content:center; padding: 24px 18px; }
+        .download-cta {
+            display:flex; align-items:center; gap:12px;
+            width:100%; max-width:720px; padding:14px 18px; border-radius:12px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+            border: 1px solid rgba(255,255,255,0.06); color: var(--text-primary);
+            text-decoration:none; font-weight:700; justify-content:center;
+            transition: transform 0.12s ease, background 0.12s ease;
+        }
+        .download-cta i { font-size: 1.25rem; color: var(--accent-color); }
+        .download-cta:hover { transform: translateY(-4px); background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); }
+        @media (max-width:480px) { .download-cta { padding:12px 14px; font-size: 0.95rem; } }

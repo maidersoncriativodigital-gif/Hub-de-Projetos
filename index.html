@@ -23,24 +23,19 @@
         <p class="reveal">Este é o repositório central dos meus estudos. Aqui documento o meu progresso em desenvolvimento web, desde os primeiros passos até projetos estruturados.</p>
     </header>
 
+    <!-- CTA: Barra centralizada de download do Currículo -->
+    <div class="download-cta-wrapper reveal">
+        <a href="Portfolio/Curriculo-Maiderson.txt" download class="download-cta" aria-label="Baixar Currículo">
+            <i class="fas fa-download" aria-hidden="true"></i>
+            <span>Baixar Currículo</span>
+        </a>
+    </div>
+
     <!-- SEÇÃO: SOBRE MIM -->
     <section class="about-section reveal" aria-labelledby="sobre-titulo">
         <div class="about-inner">
             <div class="about-thumb" aria-hidden="true">
-                <!-- avatar SVG simples para evitar dependências de ficheiros -->
-                <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Avatar">
-                    <defs>
-                        <linearGradient id="a" x1="0" x2="1">
-                            <stop offset="0" stop-color="#6366f1"/>
-                            <stop offset="1" stop-color="#a855f7"/>
-                        </linearGradient>
-                    </defs>
-                    <rect width="120" height="120" rx="20" fill="url(#a)" />
-                    <g fill="white" opacity="0.95" transform="translate(20,20)">
-                        <circle cx="40" cy="32" r="20" />
-                        <rect x="8" y="66" width="64" height="20" rx="8" />
-                    </g>
-                </svg>
+                <img src="Maiderson.png" alt="Maiderson" class="about-avatar" width="120" height="120">
             </div>
             <div class="about-content">
                 <h2 id="sobre-titulo">Sobre mim</h2>
@@ -120,7 +115,7 @@
                         <span class="tech-badge">CSS</span>
                         <span class="tech-badge">JS</span>
                     </div>
-                     <div class="project-links">
+                    <div class="project-links">
                         <a href="Justify/INSTRUCTIONS.md" class="tech-badge" target="_blank">Instruções</a>
                     </div>
                 </div>
